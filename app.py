@@ -5,20 +5,13 @@ from google.oauth2.service_account import Credentials
 
 st.set_page_config(page_title="Sales Dashboard", layout="wide")
 
-# --- Google Sheets connection ---
 SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/spreadsheets.readonly",
     "https://www.googleapis.com/auth/drive.readonly",
 ]
-"""
-creds = Credentials.from_service_account_file(
-    "service_account.json",
-    scopes=SCOPE
-)
-"""
 
 creds = Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],   # change this if your secrets are in a section
+    st.secrets,
     scopes=SCOPE
 )
 
