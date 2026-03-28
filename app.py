@@ -3,6 +3,15 @@ import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
 
+def clean_currency(series):
+    return (
+        series.astype(str)
+        .str.replace("€", "", regex=False)
+        .str.replace(" ", "", regex=False)
+        .str.replace(",", "", regex=False)   # for 3,872.00
+        .str.strip()
+    )
+
 st.set_page_config(page_title="Sales Dashboard", layout="wide")
 
 SCOPE = [
