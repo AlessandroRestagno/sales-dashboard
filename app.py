@@ -153,7 +153,20 @@ top_customers = (
     .sort_values("revenue", ascending=False)
 )
 
-st.dataframe(top_customers, use_container_width=True)
+st.dataframe(
+    top_customers,
+    use_container_width=True,
+    column_config={
+        "revenue": st.column_config.NumberColumn(
+            "Revenue",
+            format="€ %.2f",
+        ),
+        "quantity": st.column_config.NumberColumn(
+            "Quantity",
+            format="%d kg",
+        ),
+    },
+)
 
 # --- Customers > 10 items ---
 st.subheader("Customers with more than 10 items")
