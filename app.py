@@ -146,11 +146,11 @@ monthly = (
 st.line_chart(monthly.set_index("month"))
 
 # --- Top Customers ---
-st.subheader("Top Customers")
+st.subheader("Clienti Principali")
 
 top_customers = (
     filtered.groupby("customer", as_index=False)
-    .agg(revenue=("total", "sum"), quantity=("quantity", "sum"))
+    .agg(commision=("total", "sum"), quantity=("quantity", "sum"))
     .sort_values("revenue", ascending=False)
 )
 
@@ -158,8 +158,8 @@ st.dataframe(
     top_customers,
     use_container_width=True,
     column_config={
-        "revenue": st.column_config.NumberColumn(
-            "Revenue",
+        "commision": st.column_config.NumberColumn(
+            "Commissioni",
             format="€ %.2f",
         ),
         "quantity": st.column_config.NumberColumn(
@@ -168,18 +168,6 @@ st.dataframe(
         ),
     },
 )
-
-# --- Customers > 10 items ---
-st.subheader("Customers with more than 10 items")
-
-more_than_10 = (
-    filtered.groupby("customer", as_index=False)["quantity"]
-    .sum()
-)
-
-more_than_10 = more_than_10[more_than_10["quantity"] > 10]
-
-st.dataframe(more_than_10, use_container_width=True)
 
 # --- Raw Data ---
 st.subheader("Raw Data")
