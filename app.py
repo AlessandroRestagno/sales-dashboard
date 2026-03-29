@@ -126,13 +126,13 @@ if selected_agents:
 # --- KPIs ---
 col1, col2, col3, col4 = st.columns(4)
 
-col1.metric("Ricavi", f"€ {filtered['total'].sum():,.2f}")
-col2.metric("Peso totale", f"{filtered['quantity'].sum():,.0f} kg")
-col3.metric("Clienti", f"{filtered['customer'].nunique():,}")
-col4.metric("Animali", f"{filtered['product'].nunique():,}")
+col1.metric("Totale Commissioni", f"€ {filtered['commission'].sum():,.2f}")
+#col2.metric("Peso totale", f"{filtered['quantity'].sum():,.0f} kg")
+col3.metric("Totale Clienti", f"{filtered['customer'].nunique():,}")
+col4.metric("Totale Animali", f"{filtered['product'].nunique():,}")
 
 # --- Monthly Sales ---
-st.subheader("Monthly Sales")
+st.subheader("Dati Mensili")
 
 monthly = (
     filtered
