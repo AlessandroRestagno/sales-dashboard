@@ -159,7 +159,7 @@ top_customers = (
 st.dataframe(
     top_customers.style.set_properties(**{'text-align': 'center'}),
     use_container_width=True,
-    hide_index=True
+    hide_index=True,
     column_config={
         "commision": st.column_config.NumberColumn(
             "Commissioni",
