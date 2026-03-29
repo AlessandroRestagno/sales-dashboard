@@ -150,15 +150,16 @@ st.subheader("Clienti Principali")
 top_customers = (
     filtered.groupby("customer", as_index=False)
     .agg(
-        commision=("total", "sum"),
+        commision=("commision", "sum"),
         orders=("customer", "count")   # counts rows per customer
     )
     .sort_values("commision", ascending=False)
 )
 
 st.dataframe(
-    top_customers,
+    top_customers.style.set_properties(**{'text-align': 'center'}),
     use_container_width=True,
+    hide_index=True
     column_config={
         "commision": st.column_config.NumberColumn(
             "Commissioni",
