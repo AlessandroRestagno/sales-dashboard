@@ -58,6 +58,7 @@ df["date"] = pd.to_datetime(df.get("date"), errors="coerce", dayfirst=True)
 df["quantity"] = pd.to_numeric(df.get("quantity"), errors="coerce")
 df["unit_price"] = pd.to_numeric(clean_currency(df.get("unit_price")), errors="coerce")
 df["total"] = pd.to_numeric(clean_currency(df.get("total")), errors="coerce")
+df["commission"] = pd.to_numeric(clean_currency(df.get("commission")), errors="coerce")
 
 if df["total"].isna().any():
     df["total"] = df["total"].fillna(df["quantity"] * df["unit_price"])
