@@ -147,11 +147,13 @@ st.line_chart(monthly.set_index("month"))
 
 # --- Top Customers ---
 st.subheader("Clienti Principali")
-
 top_customers = (
     filtered.groupby("customer", as_index=False)
-    .agg(commision=("total", "sum"), quantity=("quantity", "sum"))
-    .sort_values("revenue", ascending=False)
+    .agg(
+        commision=("total", "sum"),
+        orders=("customer", "count")   # counts rows per customer
+    )
+    .sort_values("commision", ascending=False)
 )
 
 st.dataframe(
@@ -162,9 +164,9 @@ st.dataframe(
             "Commissioni",
             format="€ %.2f",
         ),
-        "quantity": st.column_config.NumberColumn(
-            "Quantity",
-            format="%d kg",
+        "orders": st.column_config.NumberColumn(
+            "Numero Animali",
+            format="%d",
         ),
     },
 )
