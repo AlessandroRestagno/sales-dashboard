@@ -161,7 +161,7 @@ st.dataframe(
     use_container_width=True,
     hide_index=True,
     column_config={
-        "commision": st.column_config.NumberColumn(
+        "commission": st.column_config.NumberColumn(
             "Commissioni",
             format="€ %.2f",
         ),
