@@ -150,10 +150,10 @@ st.subheader("Clienti Principali")
 top_customers = (
     filtered.groupby("customer", as_index=False)
     .agg(
-        commision=("commision", "sum"),
-        orders=("customer", "count")   # counts rows per customer
+        commission=("commission", "sum"),
+        orders=("customer", "count")
     )
-    .sort_values("commision", ascending=False)
+    .sort_values("commission", ascending=False)
 )
 
 st.dataframe(
